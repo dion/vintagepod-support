@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VintagePod Privacy Policy</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6e6e73;
+    --border: #e5e5ea;
+    --accent: #0a5cff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113;
+      --fg: #f2f2f7;
+      --muted: #9a9aa2;
+      --border: #2c2c2e;
+      --accent: #4d94ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin-bottom: 4px;
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  p, li {
+    font-size: 0.98rem;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .summary-box {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 20px 0 8px;
+    font-size: 0.95rem;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Privacy Policy for VintagePod</h1>
+  <p class="updated">Last updated: July 27, 2026</p>
+
+  <div class="summary-box">
+    <strong>In short:</strong> VintagePod does not collect, transmit, or sell your personal data.
+    It has no analytics, no ad tracking, and no user accounts. Any music library data or server
+    credentials it uses stay on your device.
+  </div>
+
+  <h2>Overview</h2>
+  <p>
+    VintagePod ("the App") is a music player for iOS. This policy explains what data the App
+    accesses, how it's used, and where it's stored. VintagePod is built to work entirely on your
+    device — it does not have a backend server, does not require you to create an account, and
+    does not include any advertising or analytics software from us or from third parties.
+  </p>
+
+  <h2>Data the App Accesses</h2>
+  <table>
+    <tr><th>Data</th><th>Purpose</th><th>Where it's stored</th></tr>
+    <tr>
+      <td>Your Apple Music library</td>
+      <td>To show your songs and albums inside VintagePod's interface, with your permission</td>
+      <td>Stays on your device — read via Apple's MediaPlayer framework, never uploaded</td>
+    </tr>
+    <tr>
+      <td>Audio files you import (local files, file sharing)</td>
+      <td>To play music you add to the App</td>
+      <td>Stays in the App's local storage on your device</td>
+    </tr>
+    <tr>
+      <td>Song metadata &amp; artwork (titles, artists, album art, lyrics files)</td>
+      <td>To display track info and enable browsing/search</td>
+      <td>Stored locally in the App's on-device library database</td>
+    </tr>
+    <tr>
+      <td>Personal streaming server address, username, and password (Subsonic-compatible servers)</td>
+      <td>To let you stream your own music collection from a server you control</td>
+      <td>Address and username in local app storage; password in the iOS Keychain, encrypted by iOS</td>
+    </tr>
+    <tr>
+      <td>Playback preferences (equalizer settings, sleep timer, shuffle/repeat state, sort order, language, appearance)</td>
+      <td>To remember your settings between sessions</td>
+      <td>Stored locally in iOS user defaults on your device</td>
+    </tr>
+  </table>
+
+  <h2>Data We Do Not Collect</h2>
+  <ul>
+    <li>No account or sign-up is required to use the App.</li>
+    <li>No analytics, crash reporting, or usage-tracking SDKs are included in the App.</li>
+    <li>No advertising identifiers are read or used.</li>
+    <li>We do not operate any server that receives your library, listening activity, or personal information.</li>
+    <li>We never sell or share your data, because we never receive it in the first place.</li>
+  </ul>
+
+  <h2>Network Connections</h2>
+  <p>
+    VintagePod makes network requests only when <strong>you</strong> configure it to do so — for
+    example, connecting to a personal Subsonic-compatible media server you've set up to stream
+    your own music library. These connections go directly from your device to the server address
+    you provide; VintagePod itself is not a party to that connection and does not log or relay it.
+    If you don't add a streaming server, the App makes no network requests related to your music
+    at all.
+  </p>
+
+  <h2>Data Sharing</h2>
+  <p>
+    VintagePod does not share, sell, rent, or disclose your data to any third party, because the
+    App does not collect or transmit personal data to us in the first place.
+  </p>
+
+  <h2>Children's Privacy</h2>
+  <p>
+    VintagePod does not knowingly collect personal information from anyone, including children
+    under 13. Since the App stores everything locally on-device and has no account system or data
+    collection, there is no personal data for us to hold about any user.
+  </p>
+
+  <h2>Your Choices</h2>
+  <ul>
+    <li>You can revoke VintagePod's access to your Apple Music library at any time in
+      <strong>Settings &gt; Privacy &amp; Security &gt; Media &amp; Apple Music</strong>.</li>
+    <li>You can remove a configured streaming server, which deletes its saved credentials from
+      the Keychain, from within the App's settings.</li>
+    <li>Deleting the App removes all locally stored library data, settings, and cached artwork
+      from your device.</li>
+  </ul>
+
+  <h2>Changes to This Policy</h2>
+  <p>
+    If this policy changes, an updated version will be posted at this same location with a
+    revised "Last updated" date.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy or the App's data practices can be sent to
+    <a href="mailto:jellopops@gmail.com">jellopops@gmail.com</a>.
+  </p>
+
+  <footer>
+    VintagePod is an independent app and is not affiliated with or endorsed by Apple Inc.
+  </footer>
+
+</div>
+</body>
+</html>
