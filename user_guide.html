@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VintagePod User Guide — iPhone &amp; iPad</title>
+<style>
+  :root {
+    color-scheme: light dark;
+
+    /* Palette drawn from the device itself: pearl polycarbonate shell, chrome
+       trim, a backlit STN screen, and the blue selection bar of the menu UI. */
+    --shell:      #ECEAE5;
+    --shell-deep: #DEDBD4;
+    --card:       #F7F6F3;
+    --chrome:     #A9AEB4;
+    --rule:       #D3CFC7;
+    --ink:        #17191C;
+    --ink-soft:   #5B6069;
+    --lcd:        #C7CFB8;
+    --lcd-rule:   #ABB69C;
+    --lcd-ink:    #262E22;
+    --hl-a:       #2B62CC;
+    --hl-b:       #5E92EA;
+    --focus:      #B4451F;
+
+    --display: -apple-system, "SF Pro Display", system-ui, sans-serif;
+    --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --shell:      #14161A;
+      --shell-deep: #0E1013;
+      --card:       #1C1F24;
+      --chrome:     #444B54;
+      --rule:       #2A2E35;
+      --ink:        #EEEFF2;
+      --ink-soft:   #979DA7;
+      --hl-a:       #3C74E0;
+      --hl-b:       #74A2F2;
+      --focus:      #FF8A5C;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--shell);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* ── Type roles ───────────────────────────────────────────────────────── */
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(2.3rem, 7vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin: 18px 0 20px;
+    max-width: 20ch;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3.4vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 1.06rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 30px 0 8px;
+  }
+
+  p { margin: 0 0 14px; max-width: 66ch; }
+
+  .lede {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 54ch;
+  }
+
+  /* A menu path is literal on-screen text, so it is set in the utility face. */
+  .path {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    margin: 0 0 22px;
+  }
+
+  code, .k {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: color-mix(in srgb, var(--chrome) 26%, transparent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ── Masthead ─────────────────────────────────────────────────────────── */
+
+  header.masthead {
+    padding: 64px 0 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding: 0 0 30px;
+  }
+
+  /* ── Hero: the wheel is the thesis ────────────────────────────────────── */
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: 44px;
+    align-items: start;
+    padding: 46px 0 54px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .wheel {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 32%, #FDFDFC 0%, #E6E4DF 62%, #CFCCC5 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      inset 0 0 0 1px rgba(0,0,0,0.14),
+      0 14px 34px -18px rgba(0,0,0,0.55);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .wheel {
+      background: radial-gradient(circle at 50% 32%, #3A3F47 0%, #24282E 64%, #171A1E 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        inset 0 0 0 1px rgba(0,0,0,0.6),
+        0 14px 34px -18px rgba(0,0,0,0.8);
+    }
+  }
+
+  /* The lit wedge follows the app's real zone geometry: four 90° quadrants
+     centred on top / right / bottom / left. */
+  .wheel__lit {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+      from var(--from, 315deg),
+      color-mix(in srgb, var(--hl-a) 42%, transparent) 0deg,
+      color-mix(in srgb, var(--hl-a) 42%, transparent) 90deg,
+      transparent 90deg
+    );
+    opacity: 0;
+    transition: opacity 180ms ease, background 180ms ease;
+    pointer-events: none;
+  }
+
+  .wheel[data-zone="menu"]  .wheel__lit { --from: 315deg; opacity: 1; }
+  .wheel[data-zone="next"]  .wheel__lit { --from: 45deg;  opacity: 1; }
+  .wheel[data-zone="play"]  .wheel__lit { --from: 135deg; opacity: 1; }
+  .wheel[data-zone="prev"]  .wheel__lit { --from: 225deg; opacity: 1; }
+
+  .wheel__ring {
+    position: absolute;
+    inset: 4%;
+    border-radius: 50%;
+    border: 1px dashed transparent;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    pointer-events: none;
+  }
+  .wheel[data-zone="ring"] .wheel__ring {
+    border-color: var(--hl-a);
+    opacity: 1;
+  }
+
+  /* Zone hit targets. Buttons, so the wheel is fully keyboard operable. */
+  .wheel__zone {
+    position: absolute;
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-family: var(--display);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: color 160ms ease;
+  }
+  .wheel__zone:hover { color: var(--ink); }
+  .wheel__zone[aria-pressed="true"] { color: var(--hl-a); }
+
+  .wheel__zone--menu { top: 7%;  left: 50%; transform: translateX(-50%); }
+  .wheel__zone--play { bottom: 7%; left: 50%; transform: translateX(-50%); }
+  .wheel__zone--prev { left: 7%;  top: 50%; transform: translateY(-50%); }
+  .wheel__zone--next { right: 7%; top: 50%; transform: translateY(-50%); }
+
+  .wheel__zone--ring {
+    top: 50%; left: 50%;
+    width: 96%; height: 96%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* Sits under the labels and above the wheel face. */
+    z-index: 1;
+    font-size: 0;
+  }
+
+  .wheel__zone--menu,
+  .wheel__zone--play,
+  .wheel__zone--prev,
+  .wheel__zone--next { z-index: 3; }
+
+  /* Printed centre button is 40% of the wheel; the Select touch zone is wider. */
+  .wheel__center {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 40%; height: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    appearance: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 34%, #FBFAF8 0%, #E4E1DB 70%, #CBC7C0 100%);
+    box-shadow:
+      inset 0 0 0 1.5px rgba(0,0,0,0.16),
+      inset 0 -1px 0 rgba(255,255,255,0.8);
+    transition: box-shadow 160ms ease;
+  }
+  @media (prefers-color-scheme: dark) {
+    .wheel__center {
+      background: radial-gradient(circle at 50% 34%, #40454D 0%, #2A2E34 72%, #1D2126 100%);
+      box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.08);
+    }
+  }
+  .wheel__center[aria-pressed="true"] {
+    box-shadow:
+      inset 0 0 0 2px var(--hl-a),
+      0 0 0 6px color-mix(in srgb, var(--hl-a) 18%, transparent);
+  }
+
+  .wheel__caption {
+    margin: 16px 0 0;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+
+  /* Readout beside the wheel. */
+  .readout__zone {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--hl-a);
+    margin: 0 0 10px;
+  }
+
+  .readout h2 { margin-bottom: 12px; }
+
+  .readout__hold {
+    margin-top: 22px;
+    padding: 14px 18px;
+    background: var(--card);
+    border-left: 3px solid var(--hl-a);
+    border-radius: 0 8px 8px 0;
+  }
+  .readout__hold p { margin: 0; font-size: 0.95rem; }
+  .readout__hold strong { font-weight: 700; }
+
+  /* ── Sections ─────────────────────────────────────────────────────────── */
+
+  section {
+    padding: 54px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr minmax(210px, 260px);
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── LCD screen card ──────────────────────────────────────────────────── */
+
+  .lcd {
+    margin: 0;
+    background: var(--lcd);
+    border-radius: 6px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.28),
+      0 0 0 7px var(--chrome),
+      0 12px 28px -16px rgba(0,0,0,0.6);
+    font-family: var(--mono);
+    color: var(--lcd-ink);
+    position: relative;
+  }
+
+  /* Faint scanlines: the one texture the whole page allows itself. */
+  .lcd::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.045) 0 1px,
+      transparent 1px 3px
+    );
+  }
+
+  .lcd__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--lcd-rule);
+    background: color-mix(in srgb, var(--lcd) 88%, #ffffff);
+  }
+
+  .lcd__rows {
+    list-style: none;
+    margin: 0;
+    padding: 3px 0 5px;
+    font-size: 0.78rem;
+  }
+
+  .lcd__rows li {
+    padding: 3px 9px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lcd__rows .is-hl {
+    background: linear-gradient(to bottom, var(--hl-b), var(--hl-a));
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .lcd__rows .is-dim { opacity: 0.42; }
+
+  .lcd figcaption,
+  figcaption.lcd-note {
+    font-family: var(--body);
+  }
+
+  figcaption.lcd-note {
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ── Reference grid ───────────────────────────────────────────────────── */
+
+  .ref {
+    display: grid;
+    grid-template-columns: minmax(150px, 190px) 1fr;
+    gap: 0;
+    margin: 22px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .ref dt {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 13px 16px 13px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+  }
+  .ref dd {
+    margin: 0;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .ref dd strong { color: var(--ink); font-weight: 600; }
+
+  /* ── Stage cycle (Now Playing) ────────────────────────────────────────── */
+
+  .stages {
+    list-style: none;
+    counter-reset: stage;
+    margin: 26px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .stages li {
+    counter-increment: stage;
+    background: var(--card);
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .stages li::before {
+    content: counter(stage);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--hl-a);
+    padding-top: 2px;
+  }
+  /* The label and its description both sit in the second column, stacked. */
+  .stages b {
+    grid-column: 2;
+    font-family: var(--display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .stages span {
+    grid-column: 2;
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+  }
+
+  /* ── Feature list ─────────────────────────────────────────────────────── */
+
+  .feat { margin: 18px 0 0; padding: 0; list-style: none; }
+  .feat li {
+    padding: 11px 0 11px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.97rem;
+    color: var(--ink-soft);
+    max-width: 66ch;
+  }
+  .feat li:last-child { border-bottom: 1px solid var(--rule); }
+  .feat b { color: var(--ink); font-weight: 650; }
+
+  /* ── Games table ──────────────────────────────────────────────────────── */
+
+  .table-scroll { overflow-x: auto; margin: 24px 0 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 520px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--chrome);
+  }
+  td:first-child { font-weight: 650; white-space: nowrap; }
+  td { color: var(--ink-soft); }
+
+  /* ── Footer ───────────────────────────────────────────────────────────── */
+
+  footer {
+    padding: 44px 0 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  footer p { max-width: 62ch; }
+
+  /* ── Responsive ───────────────────────────────────────────────────────── */
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 34px; }
+    .wheel { max-width: 300px; margin: 0 auto; }
+    .cols { grid-template-columns: 1fr; gap: 28px; }
+    .cols .lcd { max-width: 280px; }
+    .ref { grid-template-columns: 1fr; }
+    .ref dt { border-bottom: 0; padding-bottom: 0; }
+    .ref dd { padding-top: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">VintagePod · User guide · iPhone &amp; iPad</p>
+    <h1>Everything runs through the wheel.</h1>
+    <p class="lede">VintagePod is a click-wheel music player for iOS. There are no
+      tab bars and no swipe gestures — you spin, press, and hold a single wheel to reach
+      every screen. Learn the wheel and you know the whole app.</p>
+    <div class="masthead__meta">
+      <p class="eyebrow">iOS 17 or later</p>
+      <p class="eyebrow">iPhone · portrait</p>
+      <p class="eyebrow">Version 0.1.0</p>
+    </div>
+  </header>
+
+  <!-- ── Hero: interactive wheel ───────────────────────────────────────── -->
+  <div class="hero">
+    <div>
+      <div class="wheel" id="wheel" data-zone="ring">
+        <div class="wheel__lit"></div>
+        <div class="wheel__ring"></div>
+        <button class="wheel__zone wheel__zone--ring" data-zone="ring" aria-pressed="true">Spin the ring</button>
+        <button class="wheel__zone wheel__zone--menu" data-zone="menu" aria-pressed="false">Menu</button>
+        <button class="wheel__zone wheel__zone--prev" data-zone="prev" aria-pressed="false" aria-label="Previous">◀◀</button>
+        <button class="wheel__zone wheel__zone--next" data-zone="next" aria-pressed="false" aria-label="Next">▶▶</button>
+        <button class="wheel__zone wheel__zone--play" data-zone="play" aria-pressed="false" aria-label="Play and pause">▶ ❙❙</button>
+        <button class="wheel__center" data-zone="select" aria-pressed="false" aria-label="Select, the centre button"></button>
+      </div>
+      <p class="wheel__caption">Pick a zone to read what it does</p>
+    </div>
+
+    <div class="readout" id="readout" aria-live="polite">
+      <p class="readout__zone" id="readout-zone">The ring</p>
+      <h2 id="readout-title">Spin to move</h2>
+      <p id="readout-body">Drag your finger around the outer ring. Every 15 degrees
+        clicks one step — down the list, along Cover Flow, up the volume. Spin
+        further and faster to cover a long list; the wheel keeps counting as long
+        as your finger keeps circling.</p>
+      <div class="readout__hold">
+        <p id="readout-hold"><strong>Good to know:</strong> the four labels are
+          printed on the ring, but the zones are wedges — the whole top quarter is
+          MENU, the whole bottom quarter is play/pause. You never have to aim.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Gesture reference ─────────────────────────────────────────────── -->
+  <section id="gestures">
+    <p class="eyebrow">Reference</p>
+    <h2>Every gesture</h2>
+    <p>Six inputs cover the entire app. Screens change what a spin means — never
+      what a press means.</p>
+
+    <dl class="ref">
+      <dt>Spin the ring</dt>
+      <dd>Moves the highlight one row per click. On Now Playing it changes
+        volume, scrubs, scrolls lyrics, or sets a rating, depending on the stage.</dd>
+
+      <dt>Centre button</dt>
+      <dd><strong>Select.</strong> Opens the highlighted row, plays the
+        highlighted song, or advances the Now Playing stage.</dd>
+
+      <dt>Hold centre</dt>
+      <dd>Opens options for whatever is highlighted: <strong>Add to
+        On-The-Go</strong>, remove from a playlist, Browse Album, Browse Artist.</dd>
+
+      <dt>MENU</dt>
+      <dd>Goes back one screen, and remembers where the highlight was.</dd>
+
+      <dt>Hold MENU</dt>
+      <dd>Jumps straight to the main menu from anywhere.</dd>
+
+      <dt>◀◀ / ▶▶</dt>
+      <dd>Previous and next track — from any screen, whether or not you can see
+        the player.</dd>
+
+      <dt>Hold ◀◀ / ▶▶</dt>
+      <dd>Rewind and fast-forward. Engages after half a second, then keeps
+        moving until you let go.</dd>
+
+      <dt>▶❙❙</dt>
+      <dd>Play or pause. With an album, artist, playlist or Cover Flow cover
+        highlighted, it plays that whole thing immediately instead.</dd>
+    </dl>
+  </section>
+
+  <!-- ── Music in ──────────────────────────────────────────────────────── -->
+  <section id="library">
+    <p class="eyebrow">First run</p>
+    <h2>Get your music in</h2>
+    <p class="path">Settings › Import Music</p>
+
+    <div class="cols">
+      <div>
+        <p>VintagePod starts empty. There are two ways to fill it, and you can use
+          both — they land in the same library.</p>
+
+        <h3>Import Files…</h3>
+        <p>Opens the iOS file picker. Pick tracks or whole folders from iCloud
+          Drive, Dropbox, a connected drive, anywhere the picker can see.
+          VintagePod copies them into its own storage, so they keep playing when
+          the source goes offline. Supported: <code>mp3 · flac · aac · m4a · wav</code>.</p>
+
+        <h3>Import Music Library</h3>
+        <p>Reads your Apple Music library — titles, artists, albums, artwork,
+          ratings. Nothing is copied and nothing is changed: it is a read-only
+          index. Tracks stored on your device play through VintagePod directly;
+          Apple Music catalogue tracks stream, and need an active subscription.
+          Songs the Music app refuses to start are dimmed in lists until a
+          subscription or a re-import fixes them.</p>
+
+        <h3>Rescan Library</h3>
+        <p>Re-reads the files VintagePod already holds. Run it after adding
+          artwork, fixing tags, or deleting files outside the app.</p>
+      </div>
+
+      <div>
+        <figure class="lcd">
+          <div class="lcd__bar"><span>Import Music</span><span>▮</span></div>
+          <ul class="lcd__rows">
+            <li class="is-hl"><span>Import Files…</span><span>›</span></li>
+            <li><span>Import Music Library</span><span>›</span></li>
+            <li><span>Rescan Library</span></li>
+          </ul>
+        </figure>
+        <figcaption class="lcd-note">Artwork comes from the file's own tags, or
+          from a <code>cover.jpg</code> beside it. Missing covers are looked up
+          online when the album has enough tag detail to identify it.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Music ─────────────────────────────────────────────────────────── -->
+  <section id="music">
+    <p class="eyebrow">Browsing</p>
+    <h2>Music</h2>
+    <p class="path">Main › Music</p>
+
+    <div class="cols">
+      <div>
+        <p>The Music menu is the whole library, cut six ways. Any configured
+          streaming server appears at the bottom of the same list, so local and
+          remote browsing feel identical.</p>
+
+        <ul class="feat">
+          <li><b>Cover Flow</b> — spin through album art. Select opens the album;
+            ▶❙❙ plays it where it stands. Hidden when Monochrome is set to
+            Authentic, which predates album art.</li>
+          <li><b>Search…</b> — type once, get artists, albums and songs in one
+            list. Song results play as a queue, so the search itself becomes a
+            playlist.</li>
+          <li><b>Playlists</b> — your playlists, plus On-The-Go, plus a rating
+            shelf: <b>★★★★★</b>, <b>★★★★ &amp; Up</b>, and so on down to one
+            star.</li>
+          <li><b>Artists · Albums · Songs · Genres</b> — the ordinary way down.
+            Albums show their year, songs show their length.</li>
+          <li><b>Edit Genre</b> — hold centre inside an album to retag every song
+            on it at once.</li>
+        </ul>
+
+        <h3>On-The-Go</h3>
+        <p>Hold the centre button on any song, album, artist or genre and choose
+          <b>Add to On-The-Go</b> to queue it up — the whole album if you held an
+          album row. Hold a song inside a playlist to remove it again. On-The-Go
+          lives with your other playlists and survives restarts.</p>
+      </div>
+
+      <div>
+        <figure class="lcd">
+          <div class="lcd__bar"><span>Music</span><span>▶</span></div>
+          <ul class="lcd__rows">
+            <li><span>Cover Flow</span><span>›</span></li>
+            <li><span>Search…</span></li>
+            <li class="is-hl"><span>Playlists</span><span>›</span></li>
+            <li><span>Artists</span><span>›</span></li>
+            <li><span>Albums</span><span>›</span></li>
+            <li><span>Songs</span><span>›</span></li>
+            <li><span>Genres</span><span>›</span></li>
+          </ul>
+        </figure>
+        <figcaption class="lcd-note">Shuffle Songs on the main menu plays the
+          entire library in a shuffled bag — every song once before any
+          repeats.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Now Playing ───────────────────────────────────────────────────── -->
+  <section id="now-playing">
+    <p class="eyebrow">The player</p>
+    <h2>Now Playing has five faces</h2>
+    <p class="path">Main › Now Playing</p>
+
+    <p>Press the centre button to cycle through the stages. Whatever stage you
+      are on decides what spinning the wheel does — that one rule explains the
+      whole screen.</p>
+
+    <ol class="stages">
+      <li><b>Artwork</b><span>The default. Spin to change volume; a level meter
+        appears while you turn and fades a moment after you stop.</span></li>
+      <li><b>Scrub</b><span>Spin to move through the track. Stops listening after
+        three still seconds and drops back to artwork on its own.</span></li>
+      <li><b>Lyrics</b><span>Spin to scroll. VintagePod checks its own cache, then
+        the file's embedded lyrics, then looks online — synced lyrics win when
+        both exist.</span></li>
+      <li><b>Rating</b><span>Spin to set nought to five stars. Ratings feed the
+        rating shelf in Playlists.</span></li>
+      <li><b>Genre</b><span>Spin to reassign the song's genre from the genres
+        already in your library.</span></li>
+    </ol>
+
+    <h3>What else is on screen</h3>
+    <ul class="feat">
+      <li><b>Track counter</b> — position in the current queue, like <code>4 of 12</code>.</li>
+      <li><b>HI-RES</b> — shown when the file is better than 48 kHz or deeper than
+        16-bit. Local files play gapless through VintagePod's own audio engine.</li>
+      <li><b>Hold centre</b> — options for the playing track: add it to On-The-Go,
+        or jump to its album or artist.</li>
+      <li><b>Lock screen and CarPlay</b> — title, artist, artwork and transport
+        controls are published to iOS, so the usual places work as expected.</li>
+    </ul>
+  </section>
+
+  <!-- ── Radio & podcasts ──────────────────────────────────────────────── -->
+  <section id="radio">
+    <p class="eyebrow">Listening out</p>
+    <h2>Radio and podcasts</h2>
+    <p class="path">Main › Radio &nbsp;·&nbsp; Main › Podcasts</p>
+
+    <div class="cols">
+      <div>
+        <h3>Radio</h3>
+        <p>Browse a public directory of internet stations by <b>Country</b> or by
+          <b>Tag</b>, or type a name into <b>Search…</b>. Each result shows how
+          many stations sit behind it. Select a station to open its options:
+          <b>Play</b>, or <b>Add to Favorites</b> so it is waiting at the top of
+          the Radio menu next time.</p>
+
+        <h3>Podcasts</h3>
+        <p>Choose <b>Add Podcast…</b> and paste an RSS feed URL. VintagePod reads
+          the feed and lists the episodes, newest first, with dates and lengths.
+          Select an episode to stream it. <b>Unsubscribe</b> sits at the bottom of
+          the show's own episode list.</p>
+      </div>
+
+      <div>
+        <figure class="lcd">
+          <div class="lcd__bar"><span>Radio</span><span>▶</span></div>
+          <ul class="lcd__rows">
+            <li><span>Favorites</span><span>›</span></li>
+            <li><span>Search…</span></li>
+            <li class="is-hl"><span>By Country</span><span>›</span></li>
+            <li><span>By Tag</span><span>›</span></li>
+          </ul>
+        </figure>
+        <figcaption class="lcd-note">Radio and podcasts need a connection.
+          Everything else — your imported files, ratings, playlists, games — works
+          offline.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Servers ───────────────────────────────────────────────────────── -->
+  <section id="servers">
+    <p class="eyebrow">Your own library, elsewhere</p>
+    <h2>Servers</h2>
+    <p class="path">Settings › Servers › Add Server…</p>
+
+    <p>VintagePod streams from <b>Subsonic</b>-compatible servers and from
+      <b>Jellyfin</b>. Fill in a name, the server URL, and either a username and
+      password or — for Jellyfin — leave the username blank and give an API key.
+      Press <b>Test</b> to check the connection before you <b>Save</b>.</p>
+
+    <p>Saved servers appear at the bottom of the Music menu. Browsing goes
+      artists → albums → songs, exactly like the local library, and playback,
+      ratings display and Now Playing behave the same way. Passwords and API keys
+      are kept in the iOS Keychain, never in plain settings. Select a server row
+      in Settings to reopen its details, change them, or <b>Delete</b> it.</p>
+  </section>
+
+  <!-- ── Settings ──────────────────────────────────────────────────────── -->
+  <section id="settings">
+    <p class="eyebrow">Making it yours</p>
+    <h2>Settings</h2>
+    <p class="path">Main › Settings</p>
+
+    <div class="cols">
+      <div>
+        <h3>Appearance</h3>
+        <p>Each row cycles its value when you press Select — there are no sliders
+          or switches to hunt for.</p>
+        <ul class="feat">
+          <li><b>Body Color</b> — Graphite, Silver, White, Red, Blue.</li>
+          <li><b>Wheel Theme</b> — Light or Dark wheel against that body.</li>
+          <li><b>Dark Mode</b> — System, Light, or Dark for the screen itself.</li>
+          <li><b>Ultra Dark</b> — dims the screen further for night listening.</li>
+          <li><b>Monochrome</b> — <b>Smooth</b> renders a modern greyscale screen;
+            <b>Authentic</b> reproduces the coarse early-model panel, pixel
+            spacing and all. Authentic mode fixes its own text size.</li>
+          <li><b>Text Size</b> — Small, Default, Large, plus Reset Text Size.
+            Hidden in Authentic mode.</li>
+          <li><b>Immersive Mode</b> — hides the iOS status bar and keeps the
+            screen awake. On by default.</li>
+          <li><b>Glossy Finish</b>, <b>Gloss Angle</b>, <b>Gloss Position</b> —
+            the sheen across the body: on or off, shallow through steep, left to
+            right.</li>
+        </ul>
+
+        <h3>Equalizer</h3>
+        <p>Twenty-two presets, from Acoustic to Vocal Booster, plus <b>Custom</b>:
+          ten bands from 32 Hz to 16 kHz. Spin to pick a band, press Select to
+          grab it, spin to move it, press again to let go. Start playing something
+          first — the custom EQ needs a live audio path to adjust. The selected
+          preset is marked and applies to local playback.</p>
+
+        <h3>The rest</h3>
+        <ul class="feat">
+          <li><b>Language</b> — System, plus English, Español, Français,
+            Italiano, 日本語, Português and 中文.</li>
+          <li><b>Date &amp; Time</b> — <b>Time in Title</b> puts a clock in the
+            title bar of every screen.</li>
+          <li><b>Repeat</b> — Off, All, or One.</li>
+          <li><b>About</b> — version and credits.</li>
+        </ul>
+      </div>
+
+      <div>
+        <figure class="lcd">
+          <div class="lcd__bar"><span>Settings</span><span>9:41</span></div>
+          <ul class="lcd__rows">
+            <li class="is-hl"><span>Appearance</span><span>›</span></li>
+            <li><span>Language</span><span>›</span></li>
+            <li><span>Date &amp; Time</span><span>›</span></li>
+            <li><span>Repeat: All</span></li>
+            <li><span>Equalizer</span><span>›</span></li>
+            <li><span>Servers</span><span>›</span></li>
+            <li><span>Import Music</span><span>›</span></li>
+            <li><span>About</span><span>›</span></li>
+          </ul>
+        </figure>
+        <figcaption class="lcd-note">Sleep Timer lives under Extras: Off,
+          5 to 60 minutes, or End of Track. The active choice is
+          labelled.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Games ─────────────────────────────────────────────────────────── -->
+  <section id="games">
+    <p class="eyebrow">Extras</p>
+    <h2>Six games, one wheel</h2>
+    <p class="path">Main › Extras › Games</p>
+
+    <p>All six are played entirely on the wheel. Press the centre button to
+      start, and again to pause or restart. MENU leaves.</p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Game</th><th scope="col">Spin</th><th scope="col">Centre</th><th scope="col">Also</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Snake</td>
+            <td>Turns the snake — clockwise turns right</td>
+            <td>Start, pause, restart</td>
+            <td>One turn per step, on a 16 × 12 grid</td>
+          </tr>
+          <tr>
+            <td>Brick</td>
+            <td>Slides the paddle</td>
+            <td>Launch, pause, restart</td>
+            <td>Clear every brick to win</td>
+          </tr>
+          <tr>
+            <td>Parachute</td>
+            <td>Swivels the turret</td>
+            <td>Fire</td>
+            <td>Debris from a helicopter can chain into more kills; a trooper
+              whose chute never opens kills whatever is below</td>
+          </tr>
+          <tr>
+            <td>Solitaire</td>
+            <td>Moves the cursor</td>
+            <td>Lift a card, press again to drop</td>
+            <td>Hold centre to restart · MENU cancels a carry · draw three,
+              unlimited redeals</td>
+          </tr>
+          <tr>
+            <td>Music Quiz</td>
+            <td>Highlights an answer</td>
+            <td>Answer</td>
+            <td>Plays snippets from your own library, then puts your real music
+              back on when you leave</td>
+          </tr>
+          <tr>
+            <td>Tanker Battle</td>
+            <td>Aims the turret</td>
+            <td>Fire</td>
+            <td>◀◀ and ▶▶ drive the tank · capture the flags, watch your
+              ammo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Troubleshooting ───────────────────────────────────────────────── -->
+  <section id="help">
+    <p class="eyebrow">If something looks wrong</p>
+    <h2>Quick fixes</h2>
+
+    <ul class="feat">
+      <li><b>A song is greyed out and won't play.</b> It is an Apple Music
+        catalogue track and there is no active subscription on this device. Songs
+        stored on the device itself always play.</li>
+      <li><b>The library is empty after importing.</b> Run <b>Settings › Import
+        Music › Rescan Library</b>. Files in formats VintagePod can't decode —
+        Ogg Vorbis among them — are skipped during the scan.</li>
+      <li><b>No lyrics.</b> The screen says so once the search finishes. Nothing
+        found is remembered, so the same track won't hit the network again.</li>
+      <li><b>Text is too small to read.</b> <b>Appearance › Text Size</b>, unless
+        Monochrome is set to Authentic — that mode sets its own size on purpose.
+        Switch it to Smooth to get the control back.</li>
+      <li><b>The wheel feels imprecise.</b> Spin in wide circles near the outer
+        edge. Small movements near the centre count as a press, not a spin.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p><strong>VintagePod 0.1.0</strong> — an original click-wheel music player.
+      Not affiliated with, or endorsed by, Apple Inc.</p>
+    <p>Screen font: FA Sysfont C by Alina Sava (fontsarena.com), SIL OFL 1.1.
+      Radio directory data from radio-browser.info. Lyrics from LRCLIB.</p>
+    <p><a href="privacy-policy.html">Privacy policy</a></p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var COPY = {
+      ring: {
+        zone: "The ring",
+        title: "Spin to move",
+        body: "Drag your finger around the outer ring. Every 15 degrees clicks one step — down the list, along Cover Flow, up the volume. Spin further and faster to cover a long list; the wheel keeps counting as long as your finger keeps circling.",
+        hold: "<strong>Good to know:</strong> the four labels are printed on the ring, but the zones are wedges — the whole top quarter is MENU, the whole bottom quarter is play/pause. You never have to aim."
+      },
+      select: {
+        zone: "Centre button",
+        title: "Select, and hold for options",
+        body: "A press opens the highlighted row, plays the highlighted song, or moves Now Playing to its next stage. It is the only way forward through the menus.",
+        hold: "<strong>Hold it</strong> on any song, album, artist, genre or playlist row to get options: Add to On-The-Go, Remove from a playlist, Browse Album, Browse Artist."
+      },
+      menu: {
+        zone: "MENU · top quarter",
+        title: "Back, one screen at a time",
+        body: "MENU pops back to where you came from, with the highlight still on the row you left. Nothing is ever lost by going back.",
+        hold: "<strong>Hold MENU</strong> to jump straight to the main menu, however deep you are."
+      },
+      prev: {
+        zone: "◀◀ · left quarter",
+        title: "Previous, or rewind",
+        body: "A tap goes to the previous track. It works from any screen — mid-game, mid-menu, anywhere — because transport controls are never captured by a screen.",
+        hold: "<strong>Hold it</strong> and playback rewinds: half a second to engage, then continuously until you lift your finger."
+      },
+      next: {
+        zone: "▶▶ · right quarter",
+        title: "Next, or fast-forward",
+        body: "A tap skips to the next track in the queue, from any screen. In Tanker Battle, ◀◀ and ▶▶ drive the tank instead.",
+        hold: "<strong>Hold it</strong> to fast-forward: half a second to engage, then continuously until you let go."
+      },
+      play: {
+        zone: "▶❙❙ · bottom quarter",
+        title: "Play, pause, or play this",
+        body: "With nothing highlighted that can be played, it simply toggles playback.",
+        hold: "<strong>With an album, artist, playlist, rating shelf or Cover Flow cover highlighted</strong>, it plays that whole thing at once — no need to open it first."
+      }
+    };
+
+    var wheel = document.getElementById("wheel");
+    var zoneEl = document.getElementById("readout-zone");
+    var titleEl = document.getElementById("readout-title");
+    var bodyEl = document.getElementById("readout-body");
+    var holdEl = document.getElementById("readout-hold");
+    var buttons = wheel.querySelectorAll("[data-zone]");
+
+    function show(name) {
+      var c = COPY[name];
+      if (!c) return;
+      wheel.setAttribute("data-zone", name);
+      zoneEl.textContent = c.zone;
+      titleEl.textContent = c.title;
+      bodyEl.textContent = c.body;
+      holdEl.innerHTML = c.hold;
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-zone") === name));
+      });
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () { show(b.getAttribute("data-zone")); });
+      b.addEventListener("mouseenter", function () { show(b.getAttribute("data-zone")); });
+      b.addEventListener("focus", function () { show(b.getAttribute("data-zone")); });
+    });
+  })();
+</script>
+</body>
+</html>
