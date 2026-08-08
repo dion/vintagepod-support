@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VintagePod for Android — Privacy Policy</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6e6e73;
+    --border: #e5e5ea;
+    --accent: #0a5cff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113;
+      --fg: #f2f2f7;
+      --muted: #9a9aa2;
+      --border: #2c2c2e;
+      --accent: #4d94ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin-bottom: 4px;
+  }
+  .updated {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 1.15rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  h3 {
+    font-size: 1rem;
+    margin-top: 26px;
+    margin-bottom: 6px;
+  }
+  p, li {
+    font-size: 0.98rem;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    color: var(--muted);
+    font-weight: 600;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+  }
+  .summary-box {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 20px 0 8px;
+    font-size: 0.95rem;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Privacy Policy for VintagePod (Android)</h1>
+  <p class="updated">Last updated: August 6, 2026</p>
+
+  <div class="summary-box">
+    <strong>In short:</strong> VintagePod does not collect, transmit, or sell your personal data.
+    There are no analytics, no ad tracking, and no user accounts. Your music library data and your
+    server credentials stay on your device. The App does look up <em>song metadata</em> — artwork
+    and lyrics — on public music databases, and it does that automatically; the section on
+    <a href="#network">Network Connections</a> explains exactly what is sent.
+  </div>
+
+  <h2>Overview</h2>
+  <p>
+    VintagePod ("the App") is a music player for Android. This policy explains what data the App
+    accesses, how it is used, and where it is stored. The App has no backend server of ours, does
+    not require you to create an account, and contains no advertising or analytics software. There
+    is no Google Analytics, no Firebase, no Crashlytics, and no ad SDK of any kind in the build.
+  </p>
+
+  <h2>Data the App Accesses</h2>
+  <table>
+    <tr><th>Data</th><th>Purpose</th><th>Where it is stored</th></tr>
+    <tr>
+      <td>Audio files in your device's media library</td>
+      <td>To show your songs and albums inside VintagePod's interface and play them</td>
+      <td>Read through Android's MediaStore with your permission. Stays on your device; never
+        uploaded</td>
+    </tr>
+    <tr>
+      <td>Song metadata and artwork (titles, artists, albums, genres, track details)</td>
+      <td>To display track info and enable browsing and search</td>
+      <td>Stored locally in the App's on-device database</td>
+    </tr>
+    <tr>
+      <td>Album artwork downloaded for albums that have none</td>
+      <td>To fill in missing cover art</td>
+      <td>Cached as image files in the App's private cache directory on your device</td>
+    </tr>
+    <tr>
+      <td>Song lyrics</td>
+      <td>To show lyrics on the Now Playing screen (a Pro feature)</td>
+      <td>Read from the file's own tags where present, otherwise looked up online, and cached in
+        the App's on-device database</td>
+    </tr>
+    <tr>
+      <td>Your song ratings and the playlists you create</td>
+      <td>To remember your own organization of your library</td>
+      <td>Stored locally in the App's on-device database</td>
+    </tr>
+    <tr>
+      <td>Personal streaming server address, username, and password or API key
+        (Subsonic-compatible or Jellyfin servers)</td>
+      <td>To let you stream your own music collection from a server you control</td>
+      <td>Stored as plain text in the App's private storage on your device — protected by the
+        Android application sandbox, not separately encrypted. See
+        <a href="#credentials">Server Credentials</a></td>
+    </tr>
+    <tr>
+      <td>Preferences (equalizer settings, appearance, language, sleep timer, repeat mode, radio
+        favorites, podcast subscriptions)</td>
+      <td>To remember your settings between sessions</td>
+      <td>Stored locally in the App's private preference storage on your device</td>
+    </tr>
+    <tr>
+      <td>A crash log, if the App crashes</td>
+      <td>So you can see what went wrong and include it if you report a problem</td>
+      <td>Written to a file in the App's private storage. It is <strong>never</strong> transmitted
+        anywhere — nothing in the App uploads it</td>
+    </tr>
+  </table>
+
+  <h2>Data We Do Not Collect</h2>
+  <ul>
+    <li>No account or sign-up is required to use the App.</li>
+    <li>No analytics, crash reporting, or usage-tracking SDKs are included in the App.</li>
+    <li>The Android advertising ID is not read or used, and there is no advertising in the App.</li>
+    <li>We do not operate any server that receives your library, listening activity, or personal
+      information.</li>
+    <li>We never sell or share your data, because we never receive it in the first place.</li>
+  </ul>
+
+  <h2 id="network">Network Connections</h2>
+  <p>
+    The App connects to the network in two distinct ways.
+  </p>
+
+  <h3>1. Services you choose</h3>
+  <p>
+    When you add a Subsonic-compatible server (Navidrome, Airsonic, and others) or a Jellyfin
+    server, the connection runs <strong>directly from your device to the address you entered</strong>.
+    We are not a party to it, do not proxy it, and never see it. The same is true of podcast feeds
+    you subscribe to and internet radio stations you play: your device contacts those publishers'
+    servers directly, which necessarily exposes your IP address to them, as visiting any website
+    would.
+  </p>
+  <p>
+    Streamed music, podcast episodes, and radio are played live. The App does not download them to
+    your device for offline listening.
+  </p>
+
+  <h3>2. Metadata lookups</h3>
+  <p>
+    To fill in missing cover art and lyrics, the App queries public music databases. These lookups
+    carry <strong>only text drawn from your music files' own tags</strong>. No account identifier,
+    device identifier, or advertising ID is attached to any of them.
+  </p>
+  <table>
+    <tr><th>Service</th><th>What is sent</th><th>When</th></tr>
+    <tr>
+      <td>MusicBrainz (<code>musicbrainz.org</code>)</td>
+      <td>Album title and artist name</td>
+      <td>Automatically, in a background job after the App scans your library, for each album that
+        has no artwork</td>
+    </tr>
+    <tr>
+      <td>Cover Art Archive (<code>coverartarchive.org</code>)</td>
+      <td>A MusicBrainz release identifier only — no text of yours</td>
+      <td>Same background job, when MusicBrainz returned a match</td>
+    </tr>
+    <tr>
+      <td>Apple's iTunes Search API (<code>itunes.apple.com</code>)</td>
+      <td>Artist name and album title</td>
+      <td>Same background job, as a fallback when MusicBrainz has no artwork</td>
+    </tr>
+    <tr>
+      <td>LRCLIB (<code>lrclib.net</code>)</td>
+      <td>Song title, artist name, album title, and track duration</td>
+      <td>Automatically when a track starts playing, if lyrics for it are not already stored on
+        the device and the App is unlocked for lyrics. Each song is looked up once</td>
+    </tr>
+    <tr>
+      <td>radio-browser.info</td>
+      <td>The search text you type, or the country or genre you tap</td>
+      <td>Only when you browse or search for radio stations</td>
+    </tr>
+  </table>
+  <p>
+    Artwork images returned by these lookups are downloaded from the hosting service (for iTunes
+    results, Apple's artwork CDN). Each of these services operates independently of us and applies
+    its own privacy policy and its own server logging to the requests it receives.
+  </p>
+  <p>
+    <strong>These lookups currently have no in-app off switch.</strong> The artwork job runs after
+    each library scan and the lyrics lookup runs on track change; if you do not want them to
+    happen, the way to prevent them is to deny the App network access at the operating-system
+    level.
+  </p>
+
+  <h2 id="credentials">Server Credentials</h2>
+  <p>
+    Server addresses, usernames, and passwords or API keys are stored as plain text in the App's
+    private preference storage. That storage is protected by the Android application sandbox —
+    other apps cannot read it — but the App does <strong>not</strong> apply its own encryption on
+    top, and we do not claim that it does. Because the App permits Android's standard backup
+    mechanism, these files may be included in device backups to your Google account if you have
+    Android backup switched on.
+  </p>
+  <p>
+    How the credential is used depends on the server type:
+  </p>
+  <ul>
+    <li><strong>Subsonic-compatible servers:</strong> your password is never sent to the server.
+      Each request carries a salted MD5 hash of it, as the Subsonic API specifies. Note that these
+      parameters travel in the request URL, so they may appear in your own server's access logs,
+      and the App uses whatever address you enter — if that address is plain <code>http://</code>,
+      the traffic is not encrypted in transit.</li>
+    <li><strong>Jellyfin servers:</strong> the App signs in by sending your username and password
+      to your server, which is how the Jellyfin API works. The access token it returns is held in
+      memory only and is not written to disk, so the sign-in happens again the next time the App
+      starts. If you supply an API key instead of a username and password, that key is sent as a
+      request parameter.</li>
+  </ul>
+
+  <h2>Purchases</h2>
+  <p>
+    Purchases inside the App are processed by <strong>Google Play Billing</strong>. We never see or
+    handle your name, address, or payment details — Google does not give them to us. The App only
+    ever learns whether the Google account signed in on the device owns each of its products, and
+    when a purchase was made. Payment data is governed by
+    <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and the Google Play
+    Terms of Service.
+  </p>
+
+  <h2>Permissions</h2>
+  <table>
+    <tr><th>Permission</th><th>Why the App needs it</th></tr>
+    <tr>
+      <td><code>READ_MEDIA_AUDIO</code> (Android 13+)<br>
+        <code>READ_EXTERNAL_STORAGE</code> (Android 12 and older)</td>
+      <td>To find and play the audio files in your device's media library. This is the one
+        permission the App asks you for; declining it means the App has no local library to
+        show</td>
+    </tr>
+    <tr>
+      <td><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code></td>
+      <td>To reach your own streaming servers, podcast feeds, radio stations, the metadata services
+        listed above, and Google Play Billing — and to know whether a connection is available
+        before the background artwork job runs</td>
+    </tr>
+    <tr>
+      <td><code>FOREGROUND_SERVICE</code>, <code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code></td>
+      <td>To keep playing while the App is in the background, which Android requires a foreground
+        media service for</td>
+    </tr>
+    <tr>
+      <td><code>POST_NOTIFICATIONS</code></td>
+      <td>To show the playback notification with the track name and transport controls</td>
+    </tr>
+    <tr>
+      <td><code>WAKE_LOCK</code></td>
+      <td>To keep audio playing without the device suspending mid-track</td>
+    </tr>
+    <tr>
+      <td><code>VIBRATE</code></td>
+      <td>For the click wheel's haptic feedback</td>
+    </tr>
+  </table>
+
+  <h2>Data Sharing</h2>
+  <p>
+    VintagePod does not share, sell, rent, or disclose your data to any third party. Beyond the
+    metadata lookups described above — which carry song titles and artist and album names only —
+    nothing about you or your library leaves your device on our behalf.
+  </p>
+
+  <h2>Children's Privacy</h2>
+  <p>
+    VintagePod does not knowingly collect personal information from anyone, including children
+    under 13. Since the App stores everything locally on-device and has no account system and no
+    data collection, there is no personal data for us to hold about any user.
+  </p>
+
+  <h2>Your Choices</h2>
+  <ul>
+    <li>You can revoke the App's access to your audio files at any time in
+      <strong>Settings &gt; Apps &gt; VintagePod &gt; Permissions</strong>.</li>
+    <li>You can remove a configured streaming server from within the App, which deletes its saved
+      address, username, and password from your device.</li>
+    <li>Clearing the App's storage, or uninstalling it, removes the library database, your
+      settings, your ratings and playlists, cached artwork, and cached lyrics from your device.</li>
+    <li>Purchases are recorded against your Google account rather than your device, so they are not
+      lost by clearing storage or uninstalling, and can be restored from the App's Pro screen.</li>
+  </ul>
+
+  <h2>Changes to This Policy</h2>
+  <p>
+    If this policy changes, an updated version will be posted at this same location with a revised
+    "Last updated" date.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy or the App's data practices can be sent to
+    <a href="mailto:jellopops@gmail.com">jellopops@gmail.com</a>.
+  </p>
+
+  <footer>
+    VintagePod is an independent app. It is not affiliated with or endorsed by Google LLC,
+    Apple Inc. (whose iTunes Search API is used to look up album artwork), the MusicBrainz project,
+    the Cover Art Archive, LRCLIB, radio-browser.info, or any media-server project named here.
+    All trademarks are the property of their respective owners.
+  </footer>
+
+</div>
+</body>
+</html>
+<!--
+  TODO: confirm — the App contains a Storage Access Framework folder importer
+  (library/scanner/SafImporter.kt) that persists tree URI permissions, but it is currently
+  unreachable: nothing in the UI launches ACTION_OPEN_DOCUMENT_TREE and importFolder() has no
+  callers. This policy therefore describes MediaStore access only. If the folder importer is ever
+  wired up, add a row to "Data the App Accesses" for folders you pick yourself and a line to
+  "Your Choices" about revoking those folder grants.
+-->
